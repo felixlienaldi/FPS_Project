@@ -10,13 +10,10 @@ public class PlayerMovement : MonoBehaviour {
     [HideInInspector] public float RotationY;
 
     public float Sensitivy;
-
     public float Speed;
 
-    public List<KeyCode> Key = new List<KeyCode>();
-
     public Rigidbody Rb;
-    public Camera cam;
+    public Camera Cam;
 
 	void Start () {
         Cursor.visible = false;
@@ -33,16 +30,18 @@ public class PlayerMovement : MonoBehaviour {
     {
         RotationX = Mathf.Clamp(-Input.mousePosition.y * Sensitivy, AngleMinimumX, AngleMaximumX);
         RotationY = Input.mousePosition.x * Sensitivy;
-        cam.transform.rotation = Quaternion.Euler(new Vector3(RotationX, RotationY, 0f));
+        Cam.transform.rotation = Quaternion.Euler(new Vector3(RotationX, RotationY, 0f));
        
     }
 
     void TranslationMove()
     {
-         
+        float X = Cam.transform.forward.x;
+        float Z = Cam.transform.forward.z;
         if (Input.GetKey(KeyCode.W))
         {
-            Rb.velocity = new Vector3(0f, 0f, Speed);
+
+            Rb.velocity = new Vector3(X , 0f, Z) * Speed * Time.deltaTime;
             
         }   
     }
