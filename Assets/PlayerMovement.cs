@@ -11,17 +11,20 @@ public class PlayerMovement : MonoBehaviour {
 
     public float Sensitivy;
     public float Speed;
+    public float FieldOfPoint = 100f;
 
+    public RaycastHit hit;
     public Rigidbody Rb;
     public Camera Cam;
 
 	void Start () {
-        Cursor.visible = false;
-
-	}
+        
+        
+    }
 	
 
 	void Update () {
+        ShootingManager();
         RotationMove();
         TranslationMove();
     }
@@ -43,6 +46,25 @@ public class PlayerMovement : MonoBehaviour {
 
             Rb.velocity = new Vector3(X , 0f, Z) * Speed * Time.deltaTime;
             
-        }   
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+
+            Rb.velocity = new Vector3(X, 0f, Z) * -Speed * Time.deltaTime;
+
+        }
+
+    }
+
+    void ShootingManager()
+    {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            if (Physics.Raycast(Cam.transform.position, Cam.transform.forward, out hit, FieldOfPoint))
+            {
+                Debug.Log(hit.transform.name);
+            }
+        } 
+      
     }
 }
