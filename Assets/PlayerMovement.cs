@@ -11,30 +11,42 @@ public class PlayerMovement : MonoBehaviour {
 
     public float Sensitivy;
     public float Speed;
-    public float FieldOfPoint = 100f;
+    public float FieldOfPoint;
+    public float Health = 100f;
+    public float Attack = 20f;
 
-    public RaycastHit hit;
+    public RaycastHit Hit;
     public Rigidbody Rb;
     public Camera Cam;
-
+    public GameObject Weapon;
+    public EnemyScript Enemy;
+    public Vector3 MousePosition;
 	void Start () {
-        
-        
+        Cursor.lockState = CursorLockMode.Locked;
+
+
     }
 	
 
 	void Update () {
+        MousePosition.x = Input.GetAxis("Mouse X");
+        MousePosition.y = Input.GetAxis("Mouse Y");
         ShootingManager();
         RotationMove();
         TranslationMove();
+        Debug.DrawRay(Cam.transform.position, Cam.transform.forward * 100, Color.green);
+        Debug.DrawRay(Weapon.transform.position, Weapon.transform.forward * 100, Color.red);
+
     }
 
     void RotationMove()
     {
-        RotationX = Mathf.Clamp(-Input.mousePosition.y * Sensitivy, AngleMinimumX, AngleMaximumX);
-        RotationY = Input.mousePosition.x * Sensitivy;
-        Cam.transform.rotation = Quaternion.Euler(new Vector3(RotationX, RotationY, 0f));
-       
+        RotationX = -MousePosition.y * Sensitivy;
+        RotationY = MousePosition.x * Sensitivy;
+        Vector3 Result = Cam.transform.eulerAngles + new Vector3(RotationX, RotationY, 0f);
+        if ((Result.x < 315f && Result.x > 180f)) Result.x = 315f;
+        else if (Result.x > 45f && Result.x < 180f) Result.x = 45f;
+        Cam.transform.eulerAngles = Result;
     }
 
     void TranslationMove()
@@ -58,13 +70,19 @@ public class PlayerMovement : MonoBehaviour {
 
     void ShootingManager()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetButtonDown("Fire1"))
         {
-            if (Physics.Raycast(Cam.transform.position, Cam.transform.forward, out hit, FieldOfPoint))
+            if (Physics.Raycast(Cam.transform.position, Cam.transform.forward, out Hit, FieldOfPoint))
             {
-                Debug.Log(hit.transform.name);
+                Debug.Log(Hit.transform.name);
+                if(Hit.collider.tag == "Enemy")
+                {
+                    Enemy.Health -= Attack;
+                }
             }
         } 
       
     }
+
+   
 }
