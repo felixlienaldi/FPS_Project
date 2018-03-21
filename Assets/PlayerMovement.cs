@@ -78,6 +78,10 @@ public class PlayerMovement : MonoBehaviour {
                 if(Hit.collider.tag == "Enemy")
                 {
                     Enemy.Health -= Attack;
+                    if(Enemy.Health <= 0)
+                    {
+                        Enemy.Death(Enemy.Health,Enemy.Attack);  //biar dia spawn tempat lain
+                    }
                 }
             }
         } 
