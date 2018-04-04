@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
-
-	[HideInInspector] public float AngleMinimumX = -45f;
-    [HideInInspector] public float AngleMaximumX = 45f;
+    
     [HideInInspector] public float RotationX;
     [HideInInspector] public float RotationY;
 
     public float Sensitivy;
     public float Speed;
+    public float JumpForce;
     public float FieldOfPoint;
     public float Health = 100f;
     public float Attack = 20f;
+    public float FireRate;
+    public float LastFired;
+
 
     public RaycastHit Hit;
     public Rigidbody Rb;
@@ -21,10 +23,12 @@ public class PlayerMovement : MonoBehaviour {
     public GameObject Weapon;
     public EnemyScript Enemy;
     public Vector3 MousePosition;
+    public GameObject Bullet;
+
 	void Start () {
         Cursor.lockState = CursorLockMode.Locked;
-
-
+        Physics.gravity = new Vector3(0f, -100f, 0f);
+        
     }
 	
 
@@ -34,6 +38,7 @@ public class PlayerMovement : MonoBehaviour {
         ShootingManager();
         RotationMove();
         TranslationMove();
+        
         Debug.DrawRay(Cam.transform.position, Cam.transform.forward * 100, Color.green);
         Debug.DrawRay(Weapon.transform.position, Weapon.transform.forward * 100, Color.red);
 
@@ -55,37 +60,66 @@ public class PlayerMovement : MonoBehaviour {
         float Z = Cam.transform.forward.z;
         if (Input.GetKey(KeyCode.W))
         {
-
-            Rb.velocity = new Vector3(X , 0f, Z) * Speed * Time.deltaTime;
+            transform.position += new Vector3(X, 0f, Z) * Speed * Time.deltaTime;
+            //Rb.velocity = new Vector3(X , Rb.velocity.y , Z) * Speed * Time.deltaTime;
             
         }
         if (Input.GetKey(KeyCode.S))
         {
-
-            Rb.velocity = new Vector3(X, 0f, Z) * -Speed * Time.deltaTime;
+            transform.position += new Vector3(X, 0f, Z) * -Speed * Time.deltaTime;
+            //Rb.velocity = new Vector3(X, Rb.velocity.y, Z) * -Speed * Time.deltaTime;
 
         }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+           
+            Rb.velocity = new Vector3(0f, JumpForce, 0f);
+
+        }
+
 
     }
 
     void ShootingManager()
     {
-        if (Input.GetButtonDown("Fire1"))
+        
+        if (Input.GetButton("Fire1"))
         {
-            if (Physics.Raycast(Cam.transform.position, Cam.transform.forward, out Hit, FieldOfPoint))
+            StartCoroutine(ShootingRate(FireRate));
+        } 
+      
+    }
+
+    public IEnumerator ShootingRate(float FireRates)
+    {
+        yield return new WaitForSeconds(0.1f);
+        if(Time.time - LastFired > 1 - FireRates)
+        {
+            LastFired = Time.time;
+            Vector3 RaycastPosition = Cam.transform.position;
+            float RaycastPositionX = Random.Range(RaycastPosition.x - 0.5f, RaycastPosition.x + 0.5f);
+            float RaycastPositionY = Random.Range(RaycastPosition.y, RaycastPosition.y + 0.5f);
+            float RaycastPositionZ = Random.Range(RaycastPosition.z - 0.5f, RaycastPosition.z + 0.5f);
+            RaycastPosition.x = RaycastPositionX;
+            RaycastPosition.y = RaycastPositionY;
+            RaycastPosition.z = RaycastPositionZ;
+            if (Physics.Raycast(RaycastPosition, Cam.transform.forward, out Hit, FieldOfPoint))
             {
                 Debug.Log(Hit.transform.name);
-                if(Hit.collider.tag == "Enemy")
+                GameObject ShootingEffect = Instantiate(Bullet, Hit.point, Quaternion.LookRotation(Hit.normal));
+                Destroy(ShootingEffect, 0.1f);
+                if (Hit.collider.tag == "Enemy")
                 {
                     Enemy.Health -= Attack;
-                    if(Enemy.Health <= 0)
+                    if (Enemy.Health <= 0)
                     {
-                        Enemy.Death(Enemy.Health,Enemy.Attack);  //biar dia spawn tempat lain
+                        Enemy.Death(Enemy.Health, Enemy.Attack);  //biar dia spawn tempat lain
                     }
                 }
             }
-        } 
-      
+        }
+        
+       
     }
 
    

@@ -4,7 +4,7 @@ using UnityEngine.AI;
 using UnityEngine;
 
 public class EnemyScript : MonoBehaviour {
-    public float Health = 100f;
+    public float Health = 200f;
     public float Attack = 20f;
     public Transform SpawnLocation;
 
