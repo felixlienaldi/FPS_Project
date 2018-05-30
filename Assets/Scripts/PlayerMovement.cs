@@ -213,6 +213,23 @@ public class PlayerMovement : MonoBehaviour {
 
     }
 
-   
-   
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Water")
+        {
+            RenderSettings.fogColor = new Color(102f /255f, 24f/255f, 248f / 255f, 127f / 255f);
+            RenderSettings.fogEndDistance = 100f;
+        }
+    }
+
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Water")
+        {
+            RenderSettings.fogColor = new Color(94f / 255f, 94f / 255f, 94f / 255f, 255f / 255f);
+            RenderSettings.fogEndDistance = 15f;
+        }
+    }
+
 }

@@ -9,6 +9,7 @@ TagManager:
   - WeaponRange
   - Ammo
   - Weapon
+  - Water
   layers:
   - Default
   - TransparentFX

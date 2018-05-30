@@ -15,7 +15,7 @@ public class EnemyScript : MonoBehaviour
 
     public Transform Target;
     public NavMeshAgent Nav;
-
+    public Animator Anim;
     public Rigidbody Rb;
     public PlayerMovement Player;
 
@@ -45,6 +45,7 @@ public class EnemyScript : MonoBehaviour
 
         if(Distance <= LookRadius)
         {
+            Anim.SetBool("Run", true);
             Nav.SetDestination(Target.position);
 
             if(Distance <= Nav.stoppingDistance)
@@ -54,6 +55,10 @@ public class EnemyScript : MonoBehaviour
                 //Rotate the direction
                 RotateDirection();
             }
+        }
+        else
+        {
+            Anim.SetBool("Run", false);
         }
       
 

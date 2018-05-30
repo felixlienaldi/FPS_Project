@@ -15,7 +15,6 @@ public class TreeEditor : Editor {
         if(GUILayout.Button("Generate Tree"))
         {
             Tree.GenerateTree();
-            Debug.Log("Generate Complete!");
         }
     }
 }
