@@ -10,8 +10,7 @@ public class EnemyScript : MonoBehaviour
     public float Health = 200f;
     public float Attack = 20f;
     public float HealthStored;
-
-    public Transform[] SpawnLocation;
+    
 
     public Transform Target;
     public NavMeshAgent Nav;
@@ -28,11 +27,15 @@ public class EnemyScript : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, LookRadius);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, Nav.stoppingDistance);
     }
     void Start()
     {
         Target = PlayerManager.Instance.Player.transform;
         Nav = GetComponent<NavMeshAgent>();
+        Rb = GetComponent<Rigidbody>();
+        Player = PlayerManager.Instance.Player.GetComponent<PlayerMovement>();
         HealthStored = Health;
 
     }
@@ -45,20 +48,29 @@ public class EnemyScript : MonoBehaviour
 
         if(Distance <= LookRadius)
         {
+            Nav.isStopped = false;
             Anim.SetBool("Run", true);
             Nav.SetDestination(Target.position);
 
             if(Distance <= Nav.stoppingDistance)
             {
                 //Attack the target
-
+                Anim.Play("Attack_1");
+                Debug.Log("Serang");
                 //Rotate the direction
                 RotateDirection();
+            }
+            else
+            {
+                
             }
         }
         else
         {
             Anim.SetBool("Run", false);
+            Nav.velocity = Vector3.zero;
+            Nav.isStopped = true;
+          
         }
       
 
@@ -73,16 +85,7 @@ public class EnemyScript : MonoBehaviour
 
     public void Death(float health, float attack)//tempat spawn
     {
-        Randomize = Random.Range(0, 100);
-        if (Randomize < 50)
-        {
-            Nav.Warp(SpawnLocation[0].position);
-        }
-        else
-        {
-            Nav.Warp(SpawnLocation[1].position);
-        }
-
+        Destroy(this.gameObject);
         Health = health;
         Attack = attack;
     }
@@ -104,6 +107,7 @@ public class EnemyScript : MonoBehaviour
            Death(HealthStored, Attack);  //biar dia spawn tempat lain
        }
     }
+
 
     public void OnTriggerEnter(Collider collision)
     {
