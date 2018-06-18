@@ -19,8 +19,10 @@ public class EnemyScript : MonoBehaviour
     public Rigidbody Rb;
     public PlayerMovement Player;
 
-    public float LookRadius = 10f;
-
+    public float LookRadius;
+    public float Timer;
+    public float AnimationTime;
+    public bool DoneAttack;
 
     // Use this for initialization
 
@@ -36,28 +38,65 @@ public class EnemyScript : MonoBehaviour
         HealthStored = Health;
 
     }
-
+    void FixedUpdate()
+    {
+       
+        if (Timer > 0f)
+        {
+            Timer -= Time.deltaTime;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
         //Movement();
         float Distance = Vector3.Distance(Target.position, transform.position);
-
-        if(Distance <= LookRadius)
+        Nav.SetDestination(Target.position);
+        if (Distance <= LookRadius)
         {
+            
             Anim.SetBool("Run", true);
             Nav.SetDestination(Target.position);
 
-            if(Distance <= Nav.stoppingDistance)
+            if (Distance <= Nav.stoppingDistance)
+            {
+                Anim.SetBool("Run", false);
+            }
+
+            if (Distance <= Nav.stoppingDistance && Timer <= 0f)
             {
                 //Attack the target
-
-                //Rotate the direction
+                
+                Anim.SetBool("Attack", true);
+                GetComponentInChildren<BoxCollider>().enabled = true;
+                if (AnimationTime > 0f)
+                {
+                    AnimationTime -= Time.deltaTime;
+                }
+                //Rotate direction
+                if (AnimationTime <= 0f)
+                {
+                    DoneAttack = true;
+                }
                 RotateDirection();
             }
+
+            if (DoneAttack)
+            {
+                Anim.SetBool("Attack", false);
+                GetComponentInChildren<BoxCollider>().enabled = false;
+                if (Timer <= 0f)
+                {
+                    Timer = 1f;
+                    AnimationTime = 0.9f;
+                }
+                DoneAttack = false;
+            }
+
         }
         else
         {
+            Timer = 0f;
             Anim.SetBool("Run", false);
         }
       
