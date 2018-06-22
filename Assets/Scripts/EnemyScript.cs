@@ -57,12 +57,20 @@ public class EnemyScript : MonoBehaviour
         Nav.SetDestination(Target.position);
         if (Distance <= LookRadius)
         {
+<<<<<<< HEAD
+            
+=======
             Nav.isStopped = false;
+>>>>>>> f3bcd76ce7df82775e2e423a0464577ff6ee9645
             Anim.SetBool("Run", true);
             Nav.SetDestination(Target.position);
 
             if (Distance <= Nav.stoppingDistance)
             {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> aec7b5c038aac5698fe42b10d814bb91049f7165
                 Anim.SetBool("Run", false);
             }
 
@@ -71,6 +79,10 @@ public class EnemyScript : MonoBehaviour
                 //Attack the target
                 
                 Anim.SetBool("Attack", true);
+<<<<<<< HEAD
+=======
+                GetComponentInChildren<BoxCollider>().enabled = true;
+>>>>>>> aec7b5c038aac5698fe42b10d814bb91049f7165
                 if (AnimationTime > 0f)
                 {
                     AnimationTime -= Time.deltaTime;
@@ -80,7 +92,30 @@ public class EnemyScript : MonoBehaviour
                 {
                     DoneAttack = true;
                 }
+<<<<<<< HEAD
                 GetComponentInChildren<BoxCollider>().enabled = true;
+=======
+                RotateDirection();
+            }
+
+            if (DoneAttack)
+            {
+                Anim.SetBool("Attack", false);
+                GetComponentInChildren<BoxCollider>().enabled = false;
+                if (Timer <= 0f)
+                {
+                    Timer = 1f;
+                    AnimationTime = 0.9f;
+                }
+                DoneAttack = false;
+            }
+
+=======
+                //Attack the target
+                Anim.Play("Attack_1");
+                Debug.Log("Serang");
+                //Rotate the direction
+>>>>>>> aec7b5c038aac5698fe42b10d814bb91049f7165
                 RotateDirection();
             }
             else
@@ -99,6 +134,7 @@ public class EnemyScript : MonoBehaviour
                 }
                 DoneAttack = false;
             }
+>>>>>>> f3bcd76ce7df82775e2e423a0464577ff6ee9645
         }
         else
         {
