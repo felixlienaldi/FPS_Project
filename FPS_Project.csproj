@@ -159,6 +159,33 @@
     <Compile Include="Assets\Scripts\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
     <Compile Include="Assets\Scripts\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\Scripts\TreeScript.cs" />
+    <Compile Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Scene\Color Picker\CUIColorPicker.cs" />
+    <Compile Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Scene\Customization Scripts\CustomizeGraphy.cs" />
+    <Compile Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Scene\Customization Scripts\ForceSliderToMultipleOf3.cs" />
+    <Compile Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Scene\Customization Scripts\ForceSliderToPowerOf2.cs" />
+    <Compile Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Scene\Customization Scripts\UpdateTextWithSliderValue.cs" />
+    <Compile Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Scripts\Advanced\AdvancedData.cs" />
+    <Compile Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Scripts\Audio\AudioGraph.cs" />
+    <Compile Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Scripts\Audio\AudioManager.cs" />
+    <Compile Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Scripts\Audio\AudioMonitor.cs" />
+    <Compile Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Scripts\Audio\AudioText.cs" />
+    <Compile Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Scripts\Fps\FpsGraph.cs" />
+    <Compile Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Scripts\Fps\FpsManager.cs" />
+    <Compile Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Scripts\Fps\FpsMonitor.cs" />
+    <Compile Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Scripts\Fps\FpsText.cs" />
+    <Compile Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Scripts\Graph\Graph.cs" />
+    <Compile Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Scripts\GraphyDebugger.cs" />
+    <Compile Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Scripts\GraphyManager.cs" />
+    <Compile Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Scripts\Ram\RamGraph.cs" />
+    <Compile Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Scripts\Ram\RamManager.cs" />
+    <Compile Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Scripts\Ram\RamMonitor.cs" />
+    <Compile Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Scripts\Ram\RamText.cs" />
+    <Compile Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Scripts\Shader\ShaderGraph.cs" />
+    <Compile Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Scripts\UI\IModifiableState.cs" />
+    <Compile Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Scripts\UI\IMovable.cs" />
+    <Compile Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Scripts\Util\ExtensionMethods.cs" />
+    <Compile Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Scripts\Util\NumString.cs" />
+    <Compile Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Scripts\Util\Singleton.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\HolyShift\Shaders\FXWaterLowpoly.shader" />
@@ -225,6 +252,11 @@
     <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAdd.shader" />
     <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAddSoft.shader" />
     <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
+    <None Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Changelog.txt" />
+    <None Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Font\Northwest-Bold\ERIC-TIRADO-NORTHWEST-LICENSE.txt" />
+    <None Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Font\Roboto\LICENSE.txt" />
+    <None Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Shaders\GraphMobile.shader" />
+    <None Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Shaders\GraphStandard.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
