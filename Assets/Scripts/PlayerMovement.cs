@@ -11,9 +11,7 @@ public class PlayerMovement : MonoBehaviour {
     private Vector3 MousePosition;
     private float LastFired;
     private float MaxAmmo = 7;
-
     private bool Shooting = false;
-
 
     public float Sensitivy;
     public float Speed;
@@ -32,10 +30,9 @@ public class PlayerMovement : MonoBehaviour {
     public Camera Cam;
     public GameObject Bullet;
     public GameObject Weapon;
-    public GameObject CrossHair;
     public Animator Anim;
+
     public Text AmmoText;
-    public EnemyScript Enemy;
 
     void Start () {
         Cursor.lockState = CursorLockMode.Locked;
@@ -43,17 +40,14 @@ public class PlayerMovement : MonoBehaviour {
         AmmoText.enabled = false;
 
     }
+	
 
-
-    void FixedUpdate()
-    {
-        RotationMove();
-        TranslationMove();
-    }
-    void Update () {
+	void Update () {
         Anim.SetBool("Melee", false);
         MousePosition.x = Input.GetAxis("Mouse X");
         MousePosition.y = Input.GetAxis("Mouse Y");
+        RotationMove();
+        TranslationMove();
         WeaponManager();
         Debug.DrawRay(Cam.transform.position, Cam.transform.forward * 100, Color.green);
         Debug.DrawRay(Weapon.transform.position, Weapon.transform.forward * 100, Color.red);
@@ -63,8 +57,8 @@ public class PlayerMovement : MonoBehaviour {
 
     void RotationMove()
     {
-        RotationX = -MousePosition.y * Sensitivy * Time.fixedDeltaTime;
-        RotationY = MousePosition.x * Sensitivy * Time.fixedDeltaTime;
+        RotationX = -MousePosition.y * Sensitivy;
+        RotationY = MousePosition.x * Sensitivy;
         Vector3 Result = Cam.transform.eulerAngles + new Vector3(RotationX, RotationY, 0f);
         if ((Result.x < 315f && Result.x > 180f)) Result.x = 315f;
         else if (Result.x > 45f && Result.x < 180f) Result.x = 45f;
@@ -118,7 +112,6 @@ public class PlayerMovement : MonoBehaviour {
                 Destroy(Hit.transform.gameObject);
                 Weapon.SetActive(true);
                 AmmoText.enabled = true;
-                CrossHair.SetActive(true);
                 Shooting = true;
             }
         }
@@ -145,6 +138,7 @@ public class PlayerMovement : MonoBehaviour {
             if (Shooting && Ammo > 0)
             {
                 StartCoroutine(ShootingRate(FireRate));
+                
             }
         }
         if (Input.GetKeyDown(KeyCode.F))
@@ -219,28 +213,19 @@ public class PlayerMovement : MonoBehaviour {
 
     }
 
-    public void OnTriggerEnter(Collider Target)
+    public void OnTriggerEnter(Collider other)
     {
-        if (Target.gameObject.tag == "Water")
+        if (other.gameObject.tag == "Water")
         {
             RenderSettings.fogColor = new Color(102f /255f, 24f/255f, 248f / 255f, 127f / 255f);
             RenderSettings.fogEndDistance = 100f;
         }
-        if(Target.gameObject.tag == "Sword")
-        {
-            Debug.Log("Kena");
-            Health -= Enemy.Attack;
-            if(Health <= 0f)
-            {
-                Debug.Log("Died");
-            }
-        }
     }
 
 
-    public void OnTriggerExit(Collider Target)
+    public void OnTriggerExit(Collider other)
     {
-        if (Target.gameObject.tag == "Water")
+        if (other.gameObject.tag == "Water")
         {
             RenderSettings.fogColor = new Color(94f / 255f, 94f / 255f, 94f / 255f, 255f / 255f);
             RenderSettings.fogEndDistance = 15f;
