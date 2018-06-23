@@ -10,7 +10,7 @@ public class EnemyScript : MonoBehaviour
     public float Health = 200f;
     public float Attack = 20f;
     public float HealthStored;
-    
+
 
     public Transform Target;
     public NavMeshAgent Nav;
@@ -18,8 +18,10 @@ public class EnemyScript : MonoBehaviour
     public Rigidbody Rb;
     public PlayerMovement Player;
 
-    public float LookRadius = 10f;
-
+    public float LookRadius;
+    public float Timer;
+    public float AnimationTime;
+    public bool DoneAttack;
 
     // Use this for initialization
 
@@ -39,27 +41,36 @@ public class EnemyScript : MonoBehaviour
         HealthStored = Health;
 
     }
+    void FixedUpdate()
+    {
 
+        if (Timer > 0f)
+        {
+            Timer -= Time.deltaTime;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
         //Movement();
         float Distance = Vector3.Distance(Target.position, transform.position);
-
-        if(Distance <= LookRadius)
+        Nav.SetDestination(Target.position);
+        if (Distance <= LookRadius)
         {
             Nav.isStopped = false;
             Anim.SetBool("Run", true);
             Nav.SetDestination(Target.position);
 
-            if(Distance <= Nav.stoppingDistance)
+            if (Distance <= Nav.stoppingDistance)
+            {
+                Anim.SetBool("Run", false);
+            }
+
+            if (Distance <= Nav.stoppingDistance && Timer <= 0f)
             {
                 //Attack the target
-<<<<<<< HEAD
-                
-                Anim.SetBool("Attack", true);
-                GetComponentInChildren<BoxCollider>().enabled = true;
 
+                Anim.SetBool("Attack", true);
                 if (AnimationTime > 0f)
                 {
                     AnimationTime -= Time.deltaTime;
@@ -69,20 +80,9 @@ public class EnemyScript : MonoBehaviour
                 {
                     DoneAttack = true;
                 }
-
                 GetComponentInChildren<BoxCollider>().enabled = true;
-=======
-                Anim.Play("Attack_1");
-                Debug.Log("Serang");
-                //Rotate the direction
->>>>>>> parent of 67dff38... buildAKHIR
                 RotateDirection();
             }
-            else
-            {
-                
-            }
-
             else
             {
                 Anim.SetBool("Attack", false);
@@ -102,13 +102,12 @@ public class EnemyScript : MonoBehaviour
         }
         else
         {
+            Timer = 0f;
             Anim.SetBool("Run", false);
             Nav.velocity = Vector3.zero;
             Nav.isStopped = true;
-          
-        }
-      
 
+        }
     }
 
     public void RotateDirection()
@@ -130,23 +129,20 @@ public class EnemyScript : MonoBehaviour
         Vector3 Direction = (Target.position - transform.position).normalized;
         Debug.Log(Direction);
         Rb.velocity = new Vector3(10f * Direction.x, 0f, 10f * Direction.z);
-
-
     }*/
 
     public void OnRaycastHit()
     {
         Health -= Player.Attack;
-       if (Health <= 0)
-       {
-           Death(HealthStored, Attack);  //biar dia spawn tempat lain
-       }
+        if (Health <= 0)
+        {
+            Death(HealthStored, Attack);
+        }
     }
 
 
     public void OnTriggerEnter(Collider collision)
     {
-        
+
     }
 }
-    
