@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
+# Visual Studio 2017
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FPS_Project", "FPS_Project.csproj", "{B6549C65-66C0-BBED-CEEF-1287A8ED9116}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FPS_Project.Plugins", "FPS_Project.Plugins.csproj", "{034279F9-40EF-BE08-FA8E-442B28FB53FE}"
