@@ -99,9 +99,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\3D Models\Lift Car\Script\Moveliftcar.cs" />
     <Compile Include="Assets\3D Models\Western Props\Scripts\Destructible.cs" />
-    <Compile Include="Assets\HolyShift\Scripts\CheckForStandardAssets.cs" />
-    <Compile Include="Assets\Lift Car\Script\Moveliftcar.cs" />
     <Compile Include="Assets\Patricle\EffectExamples\Shared\Scripts\DecalDestroyer.cs" />
     <Compile Include="Assets\Patricle\EffectExamples\Shared\Scripts\ExtinguishableFire.cs" />
     <Compile Include="Assets\Patricle\EffectExamples\Shared\Scripts\GunAim.cs" />
@@ -161,9 +160,9 @@
     <Compile Include="Assets\Scripts\TreeScript.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\HolyShift\Shaders\FXWaterLowpoly.shader" />
-    <None Include="Assets\HolyShift\Shaders\WaterInclude.cginc" />
-    <None Include="Assets\HolyShift\readme.txt" />
+    <None Include="Assets\3D Models\HolyShift\Shaders\FXWaterLowpoly.shader" />
+    <None Include="Assets\3D Models\HolyShift\Shaders\WaterInclude.cginc" />
+    <None Include="Assets\3D Models\HolyShift\readme.txt" />
     <None Include="Assets\Patricle\EffectExamples\Shared\Shaders\SurfaceShader_VC.shader" />
     <None Include="Assets\Scripts\PostProcessing\Editor Resources\Monitors\HistogramCompute.compute" />
     <None Include="Assets\Scripts\PostProcessing\Editor Resources\Monitors\HistogramRender.shader" />

@@ -10,6 +10,7 @@ TagManager:
   - Ammo
   - Weapon
   - Water
+  - Sword
   layers:
   - Default
   - TransparentFX

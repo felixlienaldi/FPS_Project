@@ -6,15 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField]public static int CountEnemyKill;
 
     public GameObject PauseMenu;
+    public GameObject GameOverMenu;
 
     public float TimerInSeconds;
-    public bool Gameover;
+    public bool GameOver;
     // Use this for initialization
     void Start()
     {
-        Gameover = false;
+        CountEnemyKill = 0;
+        GameOver = false;
     }
 
     // Update is called once per frame
@@ -24,7 +27,19 @@ public class GameManager : MonoBehaviour
 
         if (TimerInSeconds <= 0f)
         {
-            Gameover = true;
+            GameOver = true;
+        }
+
+        if(GameOver)
+        {
+            GameOverMenu.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            GameOverMenu.SetActive(false);
+            Time.timeScale = 1f;
         }
 
         Pause();
@@ -40,7 +55,11 @@ public class GameManager : MonoBehaviour
         }
 
     }
-
+    public void Restart()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("main");
+    }
     public void ResumeButton()
     {
         PauseMenu.SetActive(false);

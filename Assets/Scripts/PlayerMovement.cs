@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour {
     public GameObject Weapon;
     public Animator Anim;
     public Text AmmoText;
-    public EnemyScript Enemy;
+    public GameManager GameManager;
 
     void Start () {
         Cursor.lockState = CursorLockMode.Locked;
@@ -115,6 +115,7 @@ public class PlayerMovement : MonoBehaviour {
             {
                 Destroy(Hit.transform.gameObject);
                 Weapon.SetActive(true);
+                Weapon.GetComponent<BoxCollider>().enabled = false;
                 AmmoText.enabled = true;
                 Shooting = true;
             }
@@ -226,23 +227,22 @@ public class PlayerMovement : MonoBehaviour {
         }
         if (Target.gameObject.tag == "Sword")
         {
-            Debug.Log("Kena");
-            Health -= Enemy.Attack;
+            Health -= Target.GetComponentInParent<EnemyScript>().Attack;
             if (Health <= 0f)
             {
-                Debug.Log("Died");
+                GameManager.GameOver = true;
             }
         }
     }
 
-
-    public void OnTriggerExit(Collider other)
+    public void OnTriggerExit(Collider Target)
     {
-        if (other.gameObject.tag == "Water")
+        if (Target.gameObject.tag == "Water")
         {
             RenderSettings.fogColor = new Color(94f / 255f, 94f / 255f, 94f / 255f, 255f / 255f);
             RenderSettings.fogEndDistance = 15f;
         }
+       
     }
 
 }

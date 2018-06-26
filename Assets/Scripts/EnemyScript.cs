@@ -74,13 +74,20 @@ public class EnemyScript : MonoBehaviour
                 if (AnimationTime > 0f)
                 {
                     AnimationTime -= Time.deltaTime;
+                    if(AnimationTime <= 0.3f)
+                    {
+                        GetComponentInChildren<BoxCollider>().enabled = true;
+                    }
                 }
                 //Rotate direction
                 if (AnimationTime <= 0f)
                 {
+                    
                     DoneAttack = true;
+                    GetComponentInChildren<BoxCollider>().enabled = false;
+
                 }
-                GetComponentInChildren<BoxCollider>().enabled = true;
+                
                 RotateDirection();
             }
             else
@@ -119,6 +126,7 @@ public class EnemyScript : MonoBehaviour
 
     public void Death(float health, float attack)//tempat spawn
     {
+        GameManager.CountEnemyKill++;
         Destroy(this.gameObject);
         Health = health;
         Attack = attack;
@@ -136,6 +144,7 @@ public class EnemyScript : MonoBehaviour
         Health -= Player.Attack;
         if (Health <= 0)
         {
+            
             Death(HealthStored, Attack);
         }
     }
