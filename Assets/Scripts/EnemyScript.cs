@@ -14,13 +14,19 @@ public class EnemyScript : MonoBehaviour
 
     public Transform Target;
     public NavMeshAgent Nav;
+    public NavMeshHit NavHit;
     public Animator Anim;
     public Rigidbody Rb;
     public PlayerMovement Player;
 
     public float LookRadius;
     public float Timer;
+    public float MaxWanderTime;
+    public float WanderTime;
     public float AnimationTime;
+    public float MinArea;
+    public float MaxArea;
+
     public bool DoneAttack;
 
     // Use this for initialization
@@ -31,6 +37,11 @@ public class EnemyScript : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, LookRadius);
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, Nav.stoppingDistance);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, MinArea);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, MaxArea);
     }
     void Start()
     {
@@ -54,7 +65,6 @@ public class EnemyScript : MonoBehaviour
     {
         //Movement();
         float Distance = Vector3.Distance(Target.position, transform.position);
-        Nav.SetDestination(Target.position);
         if (Distance <= LookRadius)
         {
             Nav.isStopped = false;
@@ -110,11 +120,31 @@ public class EnemyScript : MonoBehaviour
         else
         {
             Timer = 0f;
-            Anim.SetBool("Run", false);
-            Nav.velocity = Vector3.zero;
-            Nav.isStopped = true;
+            Anim.SetBool("Run", true);
+            WanderTime += Time.deltaTime;
+            //Anim.SetBool("Run", false);
+            //Nav.velocity = Vector3.zero;
+            //Nav.isStopped = true;
+            if (WanderTime >= MaxWanderTime)
+            {
+                Vector3 NewPos = NavMeshWanderer(transform.position, MinArea, MaxArea);
+                Nav.SetDestination(NewPos);
+                WanderTime = 0f;
+            }
 
         }
+    }
+    
+    public Vector3 NavMeshWanderer(Vector3 _OriginPos,float _MinArea, float _MaxArea)
+    {
+        //navmeh.sampleposition untuk mencari point terdekat
+        //random.insideunitsphere untuk mencari random point dalem suatu sphere
+        float Area = _MinArea + Random.Range(_MinArea,_MaxArea);
+        Vector3 Direction = Random.insideUnitSphere * Area;
+        Direction += _OriginPos;
+        NavMesh.SamplePosition(Direction, out NavHit, _MaxArea, -1);
+
+        return NavHit.position;
     }
 
     public void RotateDirection()

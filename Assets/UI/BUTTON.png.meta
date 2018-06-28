@@ -1,13 +1,54 @@
 fileFormatVersion: 2
 guid: 0e99dfec0090b234abd0f5c02e148476
-timeCreated: 1529984486
+timeCreated: 1530202576
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: BUTTON_0
+    21300002: BUTTON_1
+    21300004: BUTTON_2
+    21300006: BUTTON_3
+    21300008: BUTTON_4
+    21300010: BUTTON_5
+    21300012: BUTTON_6
+    21300014: BUTTON_7
+    21300016: BUTTON_8
+    21300018: BUTTON_9
+    21300020: BUTTON_10
+    21300022: BUTTON_11
+    21300024: BUTTON_12
+    21300026: BUTTON_13
+    21300028: BUTTON_14
+    21300030: BUTTON_15
+    21300032: BUTTON_16
+    21300034: BUTTON_17
+    21300036: BUTTON_18
+    21300038: BUTTON_19
+    21300040: BUTTON_20
+    21300042: BUTTON_21
+    21300044: BUTTON_22
+    21300046: BUTTON_23
+    21300048: BUTTON_24
+    21300050: BUTTON_25
+    21300052: BUTTON_26
+    21300054: BUTTON_27
+    21300056: BUTTON_28
+    21300058: BUTTON_29
+    21300060: BUTTON_30
+    21300062: BUTTON_31
+    21300064: BUTTON_32
+    21300066: BUTTON_33
+    21300068: BUTTON_34
+    21300070: BUTTON_35
+    21300072: BUTTON_36
+    21300074: BUTTON_37
+    21300076: BUTTON_38
+    21300078: BUTTON_39
+    21300080: BUTTON_40
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -33,13 +74,13 @@ TextureImporter:
     filterMode: -1
     aniso: -1
     mipBias: -1
-    wrapU: -1
+    wrapU: 1
     wrapV: -1
     wrapW: -1
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -47,9 +88,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
@@ -63,9 +104,155 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: tvOS
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: BUTTON_0
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 705
+        width: 121
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BUTTON_2
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 570
+        width: 301
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BUTTON_3
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 630
+        width: 212
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BUTTON_4
+      rect:
+        serializedVersion: 2
+        x: 1352
+        y: 636
+        width: 135
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BUTTON_5
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 465
+        width: 93
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BUTTON_6
+      rect:
+        serializedVersion: 2
+        x: 899
+        y: 525
+        width: 93
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BUTTON_7
+      rect:
+        serializedVersion: 2
+        x: 1359
+        y: 509
+        width: 104
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
     outline: []
     physicsShape: []
   spritePackingTag: 

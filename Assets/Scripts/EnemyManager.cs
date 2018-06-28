@@ -5,8 +5,9 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour {
     public float MaxEnemyKill;
     public float EnemyTimerSpawn;
-    public bool CommanderSpawner;
+    public bool  CommanderSpawner;
     public GameObject Enemy;
+    public GameObject Commander;
     public Transform[] SpawnLocation;
     public GameManager GameManager;
    
@@ -20,7 +21,7 @@ public class EnemyManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        CommanderSpawner = false;
+       
         if (GameManager.GameOver)
         {
             StopAllCoroutines();
@@ -38,6 +39,7 @@ public class EnemyManager : MonoBehaviour {
     {
         if (CommanderSpawner)
         {
+            Instantiate(Commander, transform.position, Quaternion.identity);
             CommanderSpawner = false;
         }
     }
