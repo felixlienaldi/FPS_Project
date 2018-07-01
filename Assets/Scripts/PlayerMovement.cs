@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour {
     private Vector3 MousePosition;
     private float LastFired;
     private float MaxAmmo = 7;
-    private bool Shooting = false;
+   
 
     public float Sensitivy;
     public float Speed;
@@ -24,7 +24,9 @@ public class PlayerMovement : MonoBehaviour {
     public float ReloadTime;
     public float FireRate;
     public float AmmoReloadCapacity;
-    
+
+    public bool Shooting = false;
+
     public RaycastHit Hit;
     public Rigidbody Rb;
     public Camera Cam;
@@ -33,12 +35,14 @@ public class PlayerMovement : MonoBehaviour {
     public Animator Anim;
     public Text AmmoText;
     public GameManager GameManager;
+    public AudioSource ShotSoundEffect;
+    public AudioSource ReloadSoundEffect;
+    public Image HealthUI;
 
     void Start () {
         Cursor.lockState = CursorLockMode.Locked;
         Physics.gravity = new Vector3(0f, -100f, 0f);
         AmmoText.enabled = false;
-
     }
 
 
@@ -50,6 +54,7 @@ public class PlayerMovement : MonoBehaviour {
 
     void Update () {
         Anim.SetBool("Melee", false);
+        Anim.SetBool("Shooting", false);
         MousePosition.x = Input.GetAxis("Mouse X");
         MousePosition.y = Input.GetAxis("Mouse Y");
         WeaponManager();
@@ -156,6 +161,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             if(AmmoStored > 0 && Shooting)
             {
+                ReloadSoundEffect.Play();
                 Shooting = false;
                 StartCoroutine(Reload(ReloadTime));
             }
@@ -201,9 +207,11 @@ public class PlayerMovement : MonoBehaviour {
             RaycastPosition.x = RaycastPositionX;
             RaycastPosition.y = RaycastPositionY;
             RaycastPosition.z = RaycastPositionZ;
-            if (Physics.Raycast(RaycastPosition, Cam.transform.forward, out Hit, FieldOfPoint))
+            if (Physics.Raycast(RaycastPosition, Cam.transform.forward, out Hit, FieldOfPoint) && Time.timeScale == 1f)
             {
                 GameObject ShootingEffect = Instantiate(Bullet, Hit.point, Quaternion.LookRotation(Hit.normal));
+                ShotSoundEffect.Play();
+                Anim.SetBool("Shooting", true);
                 Destroy(ShootingEffect, 0.1f);
                 Ammo -= 1;
                 if (Hit.collider.tag == "Enemy")
@@ -228,6 +236,7 @@ public class PlayerMovement : MonoBehaviour {
         if (Target.gameObject.tag == "Sword")
         {
             Health -= Target.GetComponentInParent<EnemyScript>().Attack;
+            HealthUI.color += new Color(0f, 0f, 0f, 51f/255f);
             if (Health <= 0f)
             {
                 GameManager.GameOver = true;

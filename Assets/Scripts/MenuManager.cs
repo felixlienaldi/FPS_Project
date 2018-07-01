@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour {
 
     public GameObject HowToPlay;
-
+    public AudioSource MenuMusic;
 	// Use this for initialization
 	void Start () {
 		
@@ -14,7 +14,14 @@ public class MenuManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (SoundTrigger.Mute)
+        {
+            MenuMusic.volume = 0f;
+        }
+        else
+        {
+            MenuMusic.volume = 1f;
+        }
 	}
 
     public void PlayButton()

@@ -1,9 +1,10 @@
 fileFormatVersion: 2
 guid: 86556652c98567441a7bdf3f5f32f71e
-timeCreated: 1529984488
+timeCreated: 1530449998
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: UI BG MATY_0
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -113,7 +114,21 @@ TextureImporter:
     overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: UI BG MATY_0
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 628
+        width: 647
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
     outline: []
     physicsShape: []
   spritePackingTag: 

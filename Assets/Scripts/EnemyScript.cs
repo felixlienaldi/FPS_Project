@@ -18,6 +18,7 @@ public class EnemyScript : MonoBehaviour
     public Animator Anim;
     public Rigidbody Rb;
     public PlayerMovement Player;
+    private EnemyManager EnemyBossDeath;
 
     public float LookRadius;
     public float Timer;
@@ -48,6 +49,7 @@ public class EnemyScript : MonoBehaviour
         Target = PlayerManager.Instance.Player.transform;
         Nav = GetComponent<NavMeshAgent>();
         Rb = GetComponent<Rigidbody>();
+        EnemyBossDeath = GameObject.Find("GameManager").GetComponent<EnemyManager>();
         Player = PlayerManager.Instance.Player.GetComponent<PlayerMovement>();
         HealthStored = Health;
 
@@ -154,12 +156,15 @@ public class EnemyScript : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, DirectionRotation, Time.deltaTime * 5f);
     }
 
-    public void Death(float health, float attack)//tempat spawn
+    public void Death()//tempat spawn
     {
+        if (!EnemyBossDeath.CommanderSpawner)
+        {
+            EnemyBossDeath.Victory = true;
+        }
         GameManager.CountEnemyKill++;
         Destroy(this.gameObject);
-        Health = health;
-        Attack = attack;
+       
     }
 
     /*public void Movement()
@@ -174,8 +179,7 @@ public class EnemyScript : MonoBehaviour
         Health -= Player.Attack;
         if (Health <= 0)
         {
-            
-            Death(HealthStored, Attack);
+            Death();
         }
     }
 

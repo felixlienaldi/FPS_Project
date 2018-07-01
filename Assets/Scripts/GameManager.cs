@@ -6,14 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField]public static int CountEnemyKill;
+    [SerializeField] public static int CountEnemyKill;
 
     public GameObject PauseMenu;
     public GameObject GameOverMenu;
+    public GameObject SecretVictoryMenu;
+    public GameObject GoodVictoryMenu;
+    public GameObject BadVictoryMenu;
+    public AudioSource[] AllMusic;
 
     public float TimerInSeconds;
     public bool GameOver;
-    // Use this for initialization
+    // Use this for initializations
     void Start()
     {
         CountEnemyKill = 0;
@@ -27,10 +31,11 @@ public class GameManager : MonoBehaviour
 
         if (TimerInSeconds <= 0f)
         {
-            GameOver = true;
+            BadVictoryMenu.SetActive(true);
+            Time.timeScale = 0f;
         }
 
-        if(GameOver)
+        if (GameOver)
         {
             GameOverMenu.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
@@ -43,6 +48,29 @@ public class GameManager : MonoBehaviour
         }
 
         Pause();
+    }
+    void Update()
+    {
+        if (SoundTrigger.Mute)
+        {
+            for(int i = 0; i < AllMusic.Length; i++)
+            {
+                AllMusic[i].volume = 0f;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < AllMusic.Length; i++)
+            {
+                AllMusic[i].volume = 1f;
+            }
+        }
+    }
+
+    public void Victory()
+    {
+        GoodVictoryMenu.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     public void Pause()

@@ -108,12 +108,14 @@
     <Compile Include="Assets\Patricle\EffectExamples\Shared\Scripts\ParticleCollision.cs" />
     <Compile Include="Assets\Patricle\EffectExamples\Shared\Scripts\ParticleExamples.cs" />
     <Compile Include="Assets\Patricle\EffectExamples\Shared\Scripts\ParticleMenu.cs" />
+    <Compile Include="Assets\Scripts\CameraBobber.cs" />
     <Compile Include="Assets\Scripts\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\EnemyScript.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\MenuManager.cs" />
     <Compile Include="Assets\Scripts\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\SoundTrigger.cs" />
     <Compile Include="Assets\Scripts\TreeScript.cs" />
   </ItemGroup>
   <ItemGroup>
