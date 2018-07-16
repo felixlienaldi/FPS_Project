@@ -16,7 +16,10 @@ public class GameManager : MonoBehaviour
     public AudioSource[] AllMusic;
 
     public float TimerInSeconds;
+
+    public bool SoundInPause;
     public bool GameOver;
+
     // Use this for initializations
     void Start()
     {
@@ -37,6 +40,10 @@ public class GameManager : MonoBehaviour
 
         if (GameOver)
         {
+            if (!SoundTrigger.Mute)
+            {
+                SoundInPause = true;
+            }
             GameOverMenu.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Time.timeScale = 0f;
@@ -51,9 +58,9 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
-        if (SoundTrigger.Mute)
+        if (SoundInPause)//muteonlyinpause
         {
-            for(int i = 0; i < AllMusic.Length; i++)
+            for (int i = 0; i < AllMusic.Length; i++)
             {
                 AllMusic[i].volume = 0f;
             }
@@ -65,11 +72,36 @@ public class GameManager : MonoBehaviour
                 AllMusic[i].volume = 1f;
             }
         }
+
+        if (SoundTrigger.Mute)//already muted
+        {
+            for (int i = 0; i < AllMusic.Length; i++)
+            {
+                AllMusic[i].volume = 0f;
+            }
+        }
+        else
+        {
+            if (!SoundInPause)
+            {
+                for (int i = 0; i < AllMusic.Length; i++)
+                {
+                    AllMusic[i].volume = 1f;
+                }
+            }
+            
+        }
     }
 
     public void Victory()
     {
+
+        if (!SoundTrigger.Mute)
+        {
+            SoundInPause = true;
+        }
         GoodVictoryMenu.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0f;
     }
 
@@ -77,6 +109,11 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+
+            if (!SoundTrigger.Mute)
+            {
+                SoundInPause = true;
+            }
             PauseMenu.SetActive(true);
             Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.None;
@@ -85,11 +122,19 @@ public class GameManager : MonoBehaviour
     }
     public void Restart()
     {
+        if (!SoundTrigger.Mute)
+        {
+            SoundInPause = false;
+        }
         Time.timeScale = 1f;
         SceneManager.LoadScene("main");
     }
     public void ResumeButton()
     {
+        if (!SoundTrigger.Mute)
+        {
+            SoundInPause = false;
+        }
         PauseMenu.SetActive(false);
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
@@ -97,6 +142,10 @@ public class GameManager : MonoBehaviour
 
     public void ExitButton()
     {
+        if (!SoundTrigger.Mute)
+        {
+            SoundInPause = false;
+        }
         Time.timeScale = 1f;
         SceneManager.LoadScene("Menu");
     }

@@ -11,6 +11,7 @@ TagManager:
   - Weapon
   - Water
   - Sword
+  - Commander
   layers:
   - Default
   - TransparentFX

@@ -158,7 +158,7 @@ public class EnemyScript : MonoBehaviour
 
     public void Death()//tempat spawn
     {
-        if (!EnemyBossDeath.CommanderSpawner)
+        if (!EnemyBossDeath.CommanderSpawner && this.gameObject.tag == "Commander")
         {
             EnemyBossDeath.Victory = true;
         }

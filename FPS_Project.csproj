@@ -99,8 +99,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\3D Models\Lift Car\Script\Moveliftcar.cs" />
-    <Compile Include="Assets\3D Models\Western Props\Scripts\Destructible.cs" />
     <Compile Include="Assets\Patricle\EffectExamples\Shared\Scripts\DecalDestroyer.cs" />
     <Compile Include="Assets\Patricle\EffectExamples\Shared\Scripts\ExtinguishableFire.cs" />
     <Compile Include="Assets\Patricle\EffectExamples\Shared\Scripts\GunAim.cs" />

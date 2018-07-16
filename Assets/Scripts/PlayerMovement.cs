@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour {
     public GameManager GameManager;
     public AudioSource ShotSoundEffect;
     public AudioSource ReloadSoundEffect;
+    public AudioSource StabbedSoundEffet;
     public Image HealthUI;
 
     void Start () {
@@ -80,32 +81,36 @@ public class PlayerMovement : MonoBehaviour {
         float Zforward = Cam.transform.forward.z;
         float Xside = Cam.transform.right.x;
         float Zside = Cam.transform.right.z;
+        
         if (Input.GetKey(KeyCode.W))
         {
             transform.position += new Vector3(Xforward, 0f, Zforward) * Speed * Time.deltaTime;
             //Rb.velocity = new Vector3(X , Rb.velocity.y , Z) * Speed * Time.deltaTime;
-            
+
         }
+        
         if (Input.GetKey(KeyCode.S))
         {
             transform.position += new Vector3(Xforward, 0f, Zforward) * -Speed * Time.deltaTime;
+           
             //Rb.velocity = new Vector3(X, Rb.velocity.y, Z) * -Speed * Time.deltaTime;
 
         }
         if (Input.GetKey(KeyCode.D))
         {
             transform.position += new Vector3(Xside, 0f, Zside) * Speed * Time.deltaTime;
+          
 
         }
         if (Input.GetKey(KeyCode.A))
         {
             transform.position += new Vector3(Xside, 0f, Zside) * -Speed * Time.deltaTime;
+           
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
            
             Rb.velocity = new Vector3(0f, JumpForce, 0f);
-
         }
 
 
@@ -214,7 +219,7 @@ public class PlayerMovement : MonoBehaviour {
                 Anim.SetBool("Shooting", true);
                 Destroy(ShootingEffect, 0.1f);
                 Ammo -= 1;
-                if (Hit.collider.tag == "Enemy")
+                if (Hit.collider.tag == "Enemy" || Hit.collider.tag == "Commander")
                 {
                     Hit.transform.SendMessage("OnRaycastHit");
 
@@ -235,6 +240,7 @@ public class PlayerMovement : MonoBehaviour {
         }
         if (Target.gameObject.tag == "Sword")
         {
+            StabbedSoundEffet.Play();
             Health -= Target.GetComponentInParent<EnemyScript>().Attack;
             HealthUI.color += new Color(0f, 0f, 0f, 51f/255f);
             if (Health <= 0f)

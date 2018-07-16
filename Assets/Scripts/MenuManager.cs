@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour {
 
     public GameObject HowToPlay;
+    public GameObject Credits;
     public AudioSource MenuMusic;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -42,5 +44,15 @@ public class MenuManager : MonoBehaviour {
     public void QuitButton()
     {
         Application.Quit();
+    }
+
+    public void CreditsButton()
+    {
+        Credits.SetActive(true);
+    }
+    
+    public void ExitCreditsButton()
+    {
+        Credits.SetActive(false);
     }
 }
