@@ -592,7 +592,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 457, y: 60}
+  m_AnchoredPosition: {x: 460, y: 60}
   m_SizeDelta: {x: 910.9, y: 628.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &553300574
@@ -1061,7 +1061,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -459, y: 79}
+  m_AnchoredPosition: {x: -408, y: 79}
   m_SizeDelta: {x: 910.9, y: 628.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &675778828
@@ -1493,7 +1493,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 15, y: 229}
+  m_AnchoredPosition: {x: 55, y: 206}
   m_SizeDelta: {x: 910.9, y: 628.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &848148114
@@ -1528,9 +1528,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Artist :
-
-    Terrence Sukri'
+  m_Text: "Artist :\nTerrence Sukri \n2001537790"
 --- !u!222 &848148115
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1691,7 +1689,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -468, y: 205}
+  m_AnchoredPosition: {x: -417, y: 205}
   m_SizeDelta: {x: 910.9, y: 628.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &901302569
@@ -1728,9 +1726,9 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: ' Programmer :
 
-    Felix Lienaldi
+    Felix Lienaldi - 2001537720
 
-    Kevin'
+    Kevin - 2001542973'
 --- !u!222 &901302570
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2214,7 +2212,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 23, y: -98}
+  m_AnchoredPosition: {x: 59, y: -98}
   m_SizeDelta: {x: 910.9, y: 628.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1101420894
@@ -2290,7 +2288,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 451, y: 229}
+  m_AnchoredPosition: {x: 451, y: 206}
   m_SizeDelta: {x: 910.9, y: 628.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1200653422
@@ -2327,7 +2325,9 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Designer :
 
-    Reyna Rosalia'
+    Reyna Rosalia
+
+    2001536806'
 --- !u!222 &1200653423
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2348,7 +2348,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1316460132
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2948,7 +2948,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 18, y: 61}
+  m_AnchoredPosition: {x: 57, y: 61}
   m_SizeDelta: {x: 910.9, y: 628.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2117018543
